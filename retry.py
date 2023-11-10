@@ -3,14 +3,14 @@ import random
 from typing import Callable
 
 
-def retry(f: Callable):
-    @wraps(f)
+def retry(func: Callable) -> Callable:
+    @wraps(func)
     def wrapper(*args, **kwds):
-        """Run f until it return a value that is not None and return the result."""
-        f_return_value = None
-        while f_return_value is None:
-            f_return_value = f(*args, **kwds)
-        return f_return_value
+        """Run the function until it return a value that is not None and return the result."""
+        func_return_value = None
+        while func_return_value is None:
+            func_return_value = func(*args, **kwds)
+        return func_return_value
     return wrapper
 
 
